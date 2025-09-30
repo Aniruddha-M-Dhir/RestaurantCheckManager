@@ -1,0 +1,77 @@
+import java.util.Scanner;
+
+public class RestaurantCheckManager {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        float totalTip = 0;
+        String exit;
+        System.out.println("How many servers are in attendance?");
+        int server = sc.nextInt();
+        float tFinal = 0;
+        int checkCount = 1;
+        System.out.println("Welcome to the check manager, please follow the instructions below!");
+        do {
+            System.out.println("Enter total check amount:");
+            float totalCheckAmnt = sc.nextFloat();
+            System.out.println("Enter tip amount:");
+            float tipCheckAmnt = sc.nextFloat();
+            System.out.println("Enter total amount:");
+            float totalAmnt = sc.nextFloat();
+            System.out.println("Check Count:" + checkCount++);
+            if (tipCheckAmnt == 0 && totalAmnt  >totalCheckAmnt) {
+                tipCheckAmnt = totalAmnt - totalCheckAmnt;
+                System.out.println(tipCheckAmnt);
+            }
+            if (totalAmnt== 0.0){
+                totalAmnt = totalCheckAmnt + tipCheckAmnt;
+
+            }
+            if (tipCheckAmnt == totalAmnt) {
+                tipCheckAmnt = totalAmnt  - totalCheckAmnt;
+            }
+            tFinal += totalCheckAmnt;
+            totalTip += tipCheckAmnt;
+            System.out.println("Total pooled tips:" +  totalTip );
+            System.out.println("Total sales so far: " + tFinal );
+            System.out.println("Do you want to stop (y/n)");
+            exit = sc.next();
+            if (exit.equals("y")) {
+                break;
+            }
+        } while (!exit.equals("y")); {
+            float totalAllocatedTip = 0.0f;
+            totalAllocatedTip =  totalTip ;
+            float serverTotalTip = totalAllocatedTip*0.40f; // total tips for servers
+            float Server = serverTotalTip/server; //for each server
+            float kitchenTotalTip = totalAllocatedTip*0.40f; // total for the kitchen
+            float Chef = kitchenTotalTip*0.50f; // tips for Chef
+            float sousChef = kitchenTotalTip*0.35f; // tips for Sous-Chef
+            float kitchenAid = kitchenTotalTip*0.15f ; // tips for Kitchen aid
+            float Host = totalAllocatedTip*0.10f; // Tip for Host/ Hostess
+            float Busser = totalAllocatedTip*0.10f; // Tip for Busser
+            System.out.println("Tip allocation for " +  totalTip  + " in tips.");
+            System.out.println("Total server Tips: " + serverTotalTip);
+            if(server == 1){
+                System.out.println("Server 1: " + Server);
+                System.out.println("Server 2: 0.00    (Did not work)");
+                System.out.println("Server 3: 0.00    (Did not work)");
+            }
+            if (server == 2){
+                System.out.println("Server 1: " + Server);
+                System.out.println("Server 2: " + Server);
+                System.out.println("Server 3: 0.00    (Did not work)");
+            }
+            if (server == 3) {
+                System.out.println("Server 1: " + Server);
+                System.out.println("Server 2: " + Server);
+                System.out.println("Server 3: " + Server);
+            }
+            System.out.println("Kitchen:" + kitchenTotalTip);
+            System.out.println("Chef:" + Chef);
+            System.out.println("Sous Chef:" + sousChef);
+            System.out.println("Kitchen aid:" + kitchenAid);
+            System.out.println("Host:" + Host);
+            System.out.println("Busser:" + Busser);
+        }
+    }
+}
